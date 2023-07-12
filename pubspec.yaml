@@ -38,6 +38,7 @@ dependencies:
   responsive_builder:
   google_fonts:
   flutter_svg:
+  web_smooth_scroll: ^1.1.0
 
 dev_dependencies:
   flutter_test:
