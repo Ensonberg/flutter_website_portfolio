@@ -14,8 +14,8 @@ class Home extends StatelessWidget {
         portrait: (context) => Container(),
         landscape: (context) => Container(),
       ),
-      tablet: (_) => Container(),
-      desktop: (_) => HomeDesktopWidget(),
+      tablet: (_) => const HomeDesktopWidget(),
+      desktop: (_) => const HomeDesktopWidget(),
     );
   }
 }

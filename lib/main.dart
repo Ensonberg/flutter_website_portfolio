@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    Color color = Color(0xff1E1E1E);
+    Color color = Color(0xff282C33);
     MaterialColor myColor = MaterialColor(
       const Color(0xff1E1E1E).value,
       <int, Color>{
