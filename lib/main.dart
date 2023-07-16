@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_portfolio_website/pages/home/home.dart';
+import 'package:my_portfolio_website/route/router.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 void main() {
@@ -30,8 +31,9 @@ class MyApp extends StatelessWidget {
       },
     );
     return ResponsiveApp(builder: (context) {
-      return MaterialApp(
+      return MaterialApp.router(
         title: 'Portfolio Website',
+        debugShowCheckedModeBanner: false,
         theme: ThemeData(
           useMaterial3: true,
           primaryColor: const Color(0xffC778DD),
@@ -40,7 +42,10 @@ class MyApp extends StatelessWidget {
           //primarySwatch: myColor,
           scaffoldBackgroundColor: color,
         ),
-        home: Home(),
+        //localizationsDelegates: AppLocalizations.localizationsDelegates,
+        routeInformationParser: router.routeInformationParser,
+        routerDelegate: router.routerDelegate,
+        routeInformationProvider: router.routeInformationProvider,
       );
     });
   }
