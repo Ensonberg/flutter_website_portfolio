@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class Footer extends StatelessWidget {
   const Footer({Key? key}) : super(key: key);
@@ -30,7 +31,6 @@ class Footer extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      const SizedBox(width: 24),
                       Container(
                         child: Row(
                           mainAxisSize: MainAxisSize.min,
@@ -40,7 +40,7 @@ class Footer extends StatelessWidget {
                             SvgPicture.asset("assets/brand.svg"),
                             const SizedBox(width: 9),
                             const Text(
-                              'Ensonberg',
+                              'Enson  ',
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,
@@ -74,10 +74,10 @@ class Footer extends StatelessWidget {
                 ],
               ),
               Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   const Text(
-                    'Media',
+                    'Social Media',
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 24,
@@ -85,11 +85,24 @@ class Footer extends StatelessWidget {
                     ),
                   ),
                   Wrap(
-                    children: [
-                      SvgPicture.asset("assets/Discord.svg"),
-                      SvgPicture.asset("assets/Github.svg"),
-                      SvgPicture.asset("assets/Twitter.svg"),
-                      SvgPicture.asset("assets/Linkedin.svg")
+                    children: const [
+                      FooterSocialMediaLink(
+                        url: 'https://twitter.com/EdirinMuogho',
+                        assetPath: "assets/Twitter.svg",
+                      ),
+                      FooterSocialMediaLink(
+                        url: 'https://discordapp.com/channels/@me/ensonberg/',
+                        assetPath: "assets/Discord.svg",
+                      ),
+                      FooterSocialMediaLink(
+                        url: 'https://github.com/Ensonberg',
+                        assetPath: "assets/Github.svg",
+                      ),
+                      FooterSocialMediaLink(
+                        url:
+                            'https://www.linkedin.com/in/muogho-endurance-625b61167/',
+                        assetPath: "assets/Linkedin.svg",
+                      )
                     ],
                   )
                 ],
@@ -98,6 +111,25 @@ class Footer extends StatelessWidget {
           ),
         )
       ],
+    );
+  }
+}
+
+class FooterSocialMediaLink extends StatelessWidget {
+  final String url;
+  final assetPath;
+  const FooterSocialMediaLink(
+      {Key? key, required this.url, required this.assetPath})
+      : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      hoverColor: Theme.of(context).primaryColor,
+      onPressed: () {
+        launchUrl(Uri.parse(url));
+      },
+      child: SvgPicture.asset(assetPath),
     );
   }
 }

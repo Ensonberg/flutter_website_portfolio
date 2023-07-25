@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:my_portfolio_website/main.dart';
 
 import 'package:responsive_grid_list/responsive_grid_list.dart';
 
+import '../../model/project_model.dart';
 import '../../widgets/desktop_body.dart';
-import '../home/widgets/project_card.dart';
+import '../../widgets/project_card.dart';
 
 class ProjectDesktop extends StatelessWidget {
   const ProjectDesktop({Key? key}) : super(key: key);
@@ -76,10 +78,12 @@ class ProjectDesktop extends StatelessWidget {
                 shrinkWrap: true,
                 physics:
                     const NeverScrollableScrollPhysics()), // Options that are getting passed to the ListView.builder() function
-            children: List.generate(
-                8,
-                (index) =>
-                    const ProjectCard()), // The list of widgets in the list
+            children: List.generate(mobileAppProjects.length, (index) {
+              ProjectModel project = mobileAppProjects[index];
+              return ProjectCard(
+                projectModel: project,
+              );
+            }), // The list of widgets in the list
           ),
         ),
         const SizedBox(
@@ -99,7 +103,7 @@ class ProjectDesktop extends StatelessWidget {
               ),
             ),
             const Text(
-              'small-projects',
+              'devops-projects',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 32,
@@ -129,10 +133,12 @@ class ProjectDesktop extends StatelessWidget {
                 shrinkWrap: true,
                 physics:
                     const NeverScrollableScrollPhysics()), // Options that are getting passed to the ListView.builder() function
-            children: List.generate(
-                8,
-                (index) =>
-                    const ProjectCard()), // The list of widgets in the list
+            children: List.generate(devopsProjects.length, (index) {
+              ProjectModel project = devopsProjects[index];
+              return ProjectCard(
+                projectModel: project,
+              );
+            }), // The list of widgets in the list
           ),
         ),
         const SizedBox(

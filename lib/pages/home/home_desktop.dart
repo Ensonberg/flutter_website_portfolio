@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:my_portfolio_website/model/project_model.dart';
 
-import 'package:my_portfolio_website/pages/home/widgets/skill_card.dart';
+import 'package:my_portfolio_website/widgets/skill_card.dart';
 import 'package:my_portfolio_website/widgets/text_view.dart';
 import 'package:responsive_grid_list/responsive_grid_list.dart';
 import 'package:go_router/go_router.dart';
+import 'package:url_launcher/url_launcher.dart';
+import '../../main.dart';
 import '../../route/routes.dart';
 import '../../style/app_colors.dart';
 import '../../widgets/desktop_body.dart';
 import '../../widgets/footer.dart';
-import 'widgets/project_card.dart';
+import '../../widgets/project_card.dart';
 
 class HomeDesktopWidget extends StatefulWidget {
   const HomeDesktopWidget({Key? key}) : super(key: key);
@@ -100,7 +103,7 @@ class _HomeDesktopWidgetState extends State<HomeDesktopWidget> {
                   ),
                   RawMaterialButton(
                     onPressed: () {
-                      context.goNamed(Routes.PROJECTS);
+                      sendEmail();
                     },
                     hoverColor: Theme.of(context).primaryColor,
                     child: Container(
@@ -322,10 +325,19 @@ class _HomeDesktopWidgetState extends State<HomeDesktopWidget> {
               // SizedBox(
               //   width: mediaQuery.width * 0.25,
               // ),
-              const TextView(
-                text: 'View all ~~>',
-                size: 16,
-                fontWeight: FontWeight.w500,
+              RawMaterialButton(
+                onPressed: () {
+                  context.goNamed(Routes.PROJECTS);
+                },
+                hoverColor: Theme.of(context).primaryColor,
+                child: const Padding(
+                  padding: EdgeInsets.all(8.0),
+                  child: TextView(
+                    text: 'View all ~~>',
+                    size: 16,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
               ),
             ],
           ),
@@ -351,10 +363,12 @@ class _HomeDesktopWidgetState extends State<HomeDesktopWidget> {
                 shrinkWrap: true,
                 physics:
                     const NeverScrollableScrollPhysics()), // Options that are getting passed to the ListView.builder() function
-            children: List.generate(
-                8,
-                (index) =>
-                    const ProjectCard()), // The list of widgets in the list
+            children: List.generate(4, (index) {
+              ProjectModel project = mobileAppProjects[index];
+              return ProjectCard(
+                projectModel: project,
+              );
+            }), // The list of widgets in the list
           ),
         ),
         const SizedBox(
@@ -466,7 +480,6 @@ class _HomeDesktopWidgetState extends State<HomeDesktopWidget> {
                             "Firestore",
                             "SQLite",
                             "Mongo db",
-                            "Cockroach db",
                           ],
                         ),
                         SizedBox(
@@ -574,7 +587,9 @@ class _HomeDesktopWidgetState extends State<HomeDesktopWidget> {
                         ),
                         RawMaterialButton(
                           hoverColor: Theme.of(context).primaryColor,
-                          onPressed: () {},
+                          onPressed: () {
+                            context.goNamed(Routes.ABOUTME);
+                          },
                           child: Container(
                             //width: 148,
                             height: 37,
@@ -693,7 +708,11 @@ class _HomeDesktopWidgetState extends State<HomeDesktopWidget> {
                             mainAxisAlignment: MainAxisAlignment.start,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Container(
+                              RawMaterialButton(
+                                hoverColor: Theme.of(context).primaryColor,
+                                onPressed: () {
+                                  _launchDiscord();
+                                },
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
                                   mainAxisAlignment: MainAxisAlignment.start,
@@ -712,7 +731,11 @@ class _HomeDesktopWidgetState extends State<HomeDesktopWidget> {
                                 ),
                               ),
                               const SizedBox(height: 8),
-                              Container(
+                              RawMaterialButton(
+                                hoverColor: Theme.of(context).primaryColor,
+                                onPressed: () {
+                                  sendEmail();
+                                },
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
                                   mainAxisAlignment: MainAxisAlignment.start,
@@ -745,5 +768,29 @@ class _HomeDesktopWidgetState extends State<HomeDesktopWidget> {
         ),
       ],
     ));
+  }
+
+  Future<void> _launchDiscord() async {
+    if (!await launchUrl(
+        Uri.parse("https://discordapp.com/channels/@me/ensonberg/"))) {
+      throw Exception('Could not launch ');
+    }
+  }
+
+  String? encodeQueryParameters(Map<String, String> params) {
+    return params.entries
+        .map((MapEntry<String, String> e) =>
+            '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
+        .join('&');
+  }
+
+  void sendEmail() {
+    final Uri emailLaunchUri = Uri(
+        scheme: 'mailto',
+        path: 'edirinmuogho@gmail.com',
+        query: encodeQueryParameters(<String, String>{
+          'subject': '',
+        }));
+    launchUrl(emailLaunchUri);
   }
 }

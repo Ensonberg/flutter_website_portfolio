@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:my_portfolio_website/main.dart';
 import 'package:my_portfolio_website/widgets/mobile_body.dart';
 import 'package:responsive_grid_list/responsive_grid_list.dart';
 
-import '../home/widgets/project_card.dart';
+import '../../model/project_model.dart';
+import '../../widgets/project_card.dart';
 
 class ProjectMobile extends StatelessWidget {
   const ProjectMobile({Key? key}) : super(key: key);
@@ -62,9 +64,12 @@ class ProjectMobile extends StatelessWidget {
             ),
             ListView.builder(
                 shrinkWrap: true,
-                itemCount: 3,
+                itemCount: mobileAppProjects.length,
                 itemBuilder: (ctx, index) {
-                  return ProjectCard();
+                  ProjectModel project = mobileAppProjects[index];
+                  return ProjectCard(
+                    projectModel: project,
+                  );
                 }),
             const SizedBox(
               height: 81,
@@ -83,7 +88,7 @@ class ProjectMobile extends StatelessWidget {
                   ),
                 ),
                 const Text(
-                  'small-projects',
+                  'devops-projects',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 32,
@@ -97,9 +102,12 @@ class ProjectMobile extends StatelessWidget {
             ),
             ListView.builder(
                 shrinkWrap: true,
-                itemCount: 3,
+                itemCount: devopsProjects.length,
                 itemBuilder: (ctx, index) {
-                  return ProjectCard();
+                  ProjectModel project = devopsProjects[index];
+                  return ProjectCard(
+                    projectModel: project,
+                  );
                 }),
             const SizedBox(
               height: 200,

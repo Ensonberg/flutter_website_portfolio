@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:my_portfolio_website/pages/home/widgets/skill_card.dart';
+import 'package:my_portfolio_website/widgets/skill_card.dart';
 import 'package:my_portfolio_website/widgets/desktop_body.dart';
 import 'package:responsive_grid_list/responsive_grid_list.dart';
 

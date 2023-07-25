@@ -2,13 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_portfolio_website/widgets/footer.dart';
-import 'package:my_portfolio_website/pages/home/widgets/skill_card.dart';
+import 'package:my_portfolio_website/widgets/skill_card.dart';
 import 'package:my_portfolio_website/widgets/mobile_body.dart';
+import 'package:url_launcher/url_launcher.dart';
 
+import '../../main.dart';
+import '../../model/project_model.dart';
 import '../../style/app_colors.dart';
 import '../../widgets/text_view.dart';
 import '../../widgets/mobile_drawer.dart';
-import 'widgets/project_card.dart';
+import '../../widgets/project_card.dart';
 
 class HomeMobile extends StatefulWidget {
   const HomeMobile({Key? key}) : super(key: key);
@@ -282,7 +285,10 @@ class _HomeMobileState extends State<HomeMobile> {
                     shrinkWrap: true,
                     itemCount: 3,
                     itemBuilder: (ctx, index) {
-                      return ProjectCard();
+                      ProjectModel project = mobileAppProjects[index];
+                      return ProjectCard(
+                        projectModel: project,
+                      );
                     }),
                 const SizedBox(
                   height: 48,
@@ -371,7 +377,6 @@ class _HomeMobileState extends State<HomeMobile> {
                                   "Git",
                                   "Linux",
                                   "Figma",
-                                  "Flutter Flow",
                                 ],
                               ),
                             ],
@@ -570,7 +575,7 @@ class _HomeMobileState extends State<HomeMobile> {
                     SizedBox(
                       width: mediaQuery.width * 0.8,
                       child: Wrap(
-                        alignment: WrapAlignment.center,
+                        alignment: WrapAlignment.start,
                         children: [
                           const SizedBox(
                             width: 505,
@@ -592,9 +597,6 @@ class _HomeMobileState extends State<HomeMobile> {
                               ),
                             ),
                             child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 const Text(
                                   'Message me here',
@@ -612,7 +614,12 @@ class _HomeMobileState extends State<HomeMobile> {
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Container(
+                                      RawMaterialButton(
+                                        hoverColor:
+                                            Theme.of(context).primaryColor,
+                                        onPressed: () {
+                                          _launchDiscord();
+                                        },
                                         child: Row(
                                           mainAxisSize: MainAxisSize.min,
                                           mainAxisAlignment:
@@ -634,7 +641,12 @@ class _HomeMobileState extends State<HomeMobile> {
                                         ),
                                       ),
                                       const SizedBox(height: 8),
-                                      Container(
+                                      RawMaterialButton(
+                                        hoverColor:
+                                            Theme.of(context).primaryColor,
+                                        onPressed: () {
+                                          sendEmail();
+                                        },
                                         child: Row(
                                           mainAxisSize: MainAxisSize.min,
                                           mainAxisAlignment:
@@ -672,5 +684,29 @@ class _HomeMobileState extends State<HomeMobile> {
         ),
       ),
     ));
+  }
+
+  Future<void> _launchDiscord() async {
+    if (!await launchUrl(
+        Uri.parse("https://discordapp.com/channels/@me/ensonberg/"))) {
+      throw Exception('Could not launch ');
+    }
+  }
+
+  String? encodeQueryParameters(Map<String, String> params) {
+    return params.entries
+        .map((MapEntry<String, String> e) =>
+            '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
+        .join('&');
+  }
+
+  void sendEmail() {
+    final Uri emailLaunchUri = Uri(
+        scheme: 'mailto',
+        path: 'edirinmuogho@gmail.com',
+        query: encodeQueryParameters(<String, String>{
+          'subject': '',
+        }));
+    launchUrl(emailLaunchUri);
   }
 }

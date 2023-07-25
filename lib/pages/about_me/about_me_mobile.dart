@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:my_portfolio_website/widgets/mobile_body.dart';
 import 'package:responsive_grid_list/responsive_grid_list.dart';
 
-import '../home/widgets/skill_card.dart';
+import '../../widgets/skill_card.dart';
 
 class AboutMeMobile extends StatelessWidget {
   const AboutMeMobile({Key? key}) : super(key: key);
