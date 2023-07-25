@@ -12,8 +12,7 @@ class SkillCard extends StatelessWidget {
     Size mediaQuery = MediaQuery.of(context).size;
     return Container(
       width: 300,
-      //height: 103,
-
+      height: 220,
       decoration: const ShapeDecoration(
         shape: RoundedRectangleBorder(
           side: BorderSide(width: 0.3, color: Color(0xFFABB2BF)),

@@ -11,7 +11,7 @@ abstract class Paths {
   Paths._();
   // main Routes
   static const HOME = '/';
-  static const PROJECTS = 'projects';
-  static const CONTACTME = 'contact-me';
-  static const ABOUTME = 'about-me';
+  static const PROJECTS = '/projects';
+  static const CONTACTME = '/contact-me';
+  static const ABOUTME = '/about-me';
 }

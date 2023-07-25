@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_portfolio_website/pages/home/home.dart';
 import 'package:my_portfolio_website/route/router.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 void main() {
-  runApp(const MyApp());
+  //GoRouter.setUrlPathStrategy(UrlPathStrategy.path);
+  runApp(const ProviderScope(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {
