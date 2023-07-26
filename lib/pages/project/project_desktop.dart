@@ -4,6 +4,7 @@ import 'package:my_portfolio_website/main.dart';
 import 'package:responsive_grid_list/responsive_grid_list.dart';
 
 import '../../model/project_model.dart';
+import '../../util/constants.dart';
 import '../../widgets/desktop_body.dart';
 import '../../widgets/project_card.dart';
 

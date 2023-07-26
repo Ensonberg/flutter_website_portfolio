@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:my_portfolio_website/util/constants.dart';
+import 'package:my_portfolio_website/widgets/footer.dart';
 import 'package:my_portfolio_website/widgets/mobile_body.dart';
 import 'package:responsive_grid_list/responsive_grid_list.dart';
 
@@ -57,10 +59,10 @@ class AboutMeMobile extends StatelessWidget {
             const SizedBox(
               height: 112,
             ),
-            const SizedBox(
+            SizedBox(
               child: Text(
-                'Hello, i’m Enson!\n\nI am Self-taught Mobile App developer based in Akure Nigeria. Proven ability to design, develop, and deliver high-quality, cross-platform mobile apps using Flutter. Expertise in all phases of the mobile app development lifecycle, from ideation to deployment. Strong problem-solving and analytical skills. Ability to work independently and as part of a team. \n\nI am confident that my skills and experience would be a valuable asset to your team. I am a highly motivated and results-oriented individual with a passion for mobile app development. I am eager to learn new technologies and am always looking for ways to improve my skills. I am confident that I can make a significant contribution to your company. ',
-                style: TextStyle(
+                aboutMeFull,
+                style: const TextStyle(
                   color: Color(0xFFABB2BF),
                   fontSize: 16,
                   height: 2.5,
@@ -110,60 +112,48 @@ class AboutMeMobile extends StatelessWidget {
                   shrinkWrap: true,
                   physics: const NeverScrollableScrollPhysics()),
               // Options that are getting passed to the ListView.builder() function
-              children: const [
-                SkillCard(
-                  skillTitle: 'Languages',
-                  skillList: [
-                    "Dart",
-                    "Java",
-                    "Kotlin",
-                    "Swift",
-                    "JavaScript",
-                  ],
-                ),
-                SkillCard(
-                  skillTitle: 'Frameworks',
-                  skillList: [
-                    "Flutter",
-                    "JetPack Compose",
-                    "Swift UI",
-                  ],
-                ),
-                SkillCard(
-                  skillTitle: 'Tools',
-                  skillList: [
-                    "Android Studio",
-                    "XCode",
-                    "VSCode",
-                    "Git",
-                    "Linux",
-                    "Figma",
-                    // "Flutter Flow",
-                  ],
-                ),
-                SkillCard(
-                  skillTitle: 'Databases',
-                  skillList: [
-                    "Firestore",
-                    "SQLite",
-                    "Mongo db",
-                    "Cockroach db",
-                  ],
-                ),
-                SkillCard(
-                  skillTitle: 'Others',
-                  skillList: [
-                    "CIRCLE CI",
-                    "AWS",
-                    "GCLOUD",
-                    "YAML",
-                    "XML",
-                    "HTML",
-                    "CSS",
-                  ],
-                ),
-              ], // The list of widgets in the list
+              children: skills
+                  .map((skillModel) => SkillCard(skillModel: skillModel))
+                  .toList(), // The list of widgets in the list
             ),
+            SizedBox(
+              height: 48,
+            ),
+            ListView.builder(
+                itemCount: funFacts.length,
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                itemBuilder: (ctx, index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(bottom: 16),
+                    child: Container(
+                      // height: 37,
+                      padding: const EdgeInsets.all(8),
+                      decoration: ShapeDecoration(
+                        shape: RoundedRectangleBorder(
+                          side:
+                              BorderSide(width: 0.50, color: Color(0xFFABB2BF)),
+                        ),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            funFacts[index],
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(
+                              color: Color(0xFFABB2BF),
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                }),
+            Footer(),
           ],
         ),
       ),

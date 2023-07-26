@@ -11,6 +11,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../main.dart';
 import '../../route/routes.dart';
 import '../../style/app_colors.dart';
+import '../../util/constants.dart';
 import '../../widgets/desktop_body.dart';
 import '../../widgets/footer.dart';
 import '../../widgets/project_card.dart';
@@ -121,7 +122,7 @@ class _HomeDesktopWidgetState extends State<HomeDesktopWidget> {
                         mainAxisSize: MainAxisSize.min,
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
+                        children: const [
                           Text(
                             'Contact me!!',
                             style: TextStyle(
@@ -435,67 +436,32 @@ class _HomeDesktopWidgetState extends State<HomeDesktopWidget> {
                   //verticalDirection: VerticalDirection.up,
                   alignment: WrapAlignment.spaceAround,
                   children: [
-                    const SkillCard(
-                      skillTitle: 'Languages',
-                      skillList: [
-                        "Dart",
-                        "JavaScript",
-                        "Java",
-                        "Kotlin",
-                        "Python"
-                      ],
+                    SkillCard(
+                      skillModel: skills[0],
                     ),
                     Column(
-                      children: const [
+                      children: [
                         SkillCard(
-                          skillTitle: 'Frameworks',
-                          skillList: [
-                            "Flutter",
-                            "JetPack Compose",
-                            "Swift UI",
-                          ],
+                          skillModel: skills[1],
                         ),
                         SizedBox(
                           height: 16,
                         ),
                         SkillCard(
-                          skillTitle: 'Tools',
-                          skillList: [
-                            "Android Studio",
-                            "XCode",
-                            "VSCode",
-                            "Git",
-                            "Linux"
-                                "Figma",
-                            "Flutter Flow",
-                          ],
+                          skillModel: skills[2],
                         ),
                       ],
                     ),
                     Column(
-                      children: const [
+                      children: [
                         SkillCard(
-                          skillTitle: 'Databases',
-                          skillList: [
-                            "Firestore",
-                            "SQLite",
-                            "Mongo db",
-                          ],
+                          skillModel: skills[3],
                         ),
                         SizedBox(
                           height: 16,
                         ),
                         SkillCard(
-                          skillTitle: 'Others',
-                          skillList: [
-                            "CIRCLE CI",
-                            "AWS",
-                            "GCLOUD",
-                            "YAML",
-                            "XML",
-                            "HTML",
-                            "CSS",
-                          ],
+                          skillModel: skills[4],
                         ),
                       ],
                     ),

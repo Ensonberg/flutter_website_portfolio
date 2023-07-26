@@ -4,6 +4,8 @@ import 'package:my_portfolio_website/widgets/mobile_body.dart';
 import 'package:responsive_grid_list/responsive_grid_list.dart';
 
 import '../../model/project_model.dart';
+import '../../util/constants.dart';
+import '../../widgets/footer.dart';
 import '../../widgets/project_card.dart';
 
 class ProjectMobile extends StatelessWidget {
@@ -102,6 +104,7 @@ class ProjectMobile extends StatelessWidget {
             ),
             ListView.builder(
                 shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
                 itemCount: devopsProjects.length,
                 itemBuilder: (ctx, index) {
                   ProjectModel project = devopsProjects[index];
@@ -110,8 +113,9 @@ class ProjectMobile extends StatelessWidget {
                   );
                 }),
             const SizedBox(
-              height: 200,
-            )
+              height: 20,
+            ),
+            Footer(),
           ],
         ),
       ),

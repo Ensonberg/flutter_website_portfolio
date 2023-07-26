@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:my_portfolio_website/util/constants.dart';
 import 'package:my_portfolio_website/widgets/skill_card.dart';
 import 'package:my_portfolio_website/widgets/desktop_body.dart';
 import 'package:responsive_grid_list/responsive_grid_list.dart';
@@ -59,11 +61,11 @@ class AboutMeDesktop extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              const Flexible(
+              Flexible(
                 child: SizedBox(
                   child: Text(
-                    'Hello, i’m Enson!\n\nI am Self-taught Mobile App developer based in Akure Nigeria. Proven ability to design, develop, and deliver high-quality, cross-platform mobile apps using Flutter. Expertise in all phases of the mobile app development lifecycle, from ideation to deployment. Strong problem-solving and analytical skills. Ability to work independently and as part of a team. \n\nI am confident that my skills and experience would be a valuable asset to your team. I am a highly motivated and results-oriented individual with a passion for mobile app development. I am eager to learn new technologies and am always looking for ways to improve my skills. I am confident that I can make a significant contribution to your company. ',
-                    style: TextStyle(
+                    aboutMeFull,
+                    style: const TextStyle(
                       color: Color(0xFFABB2BF),
                       fontSize: 16,
                       height: 2.5,
@@ -108,71 +110,106 @@ class AboutMeDesktop extends StatelessWidget {
         SizedBox(
           width: mediaQuery.width * 0.8,
           child: ResponsiveGridList(
-            // Vertical space around the grid
-            minItemWidth:
-                300, // The minimum item width (can be smaller, if the layout constraints are smaller)
-            minItemsPerRow:
-                2, // The minimum items to show in a single row. Takes precedence over minItemWidth
-            maxItemsPerRow:
-                5, // The maximum items to show in a single row. Can be useful on large screens
-            listViewBuilderOptions: ListViewBuilderOptions(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics()),
-            // Options that are getting passed to the ListView.builder() function
-            children: const [
-              SkillCard(
-                skillTitle: 'Languages',
-                skillList: [
-                  "Dart",
-                  "Java",
-                  "Kotlin",
-                  "Swift",
-                  "JavaScript",
-                ],
+              // Vertical space around the grid
+              minItemWidth:
+                  300, // The minimum item width (can be smaller, if the layout constraints are smaller)
+              minItemsPerRow:
+                  2, // The minimum items to show in a single row. Takes precedence over minItemWidth
+              maxItemsPerRow:
+                  5, // The maximum items to show in a single row. Can be useful on large screens
+              listViewBuilderOptions: ListViewBuilderOptions(
+                  shrinkWrap: true,
+                  physics: const NeverScrollableScrollPhysics()),
+              // Options that are getting passed to the ListView.builder() function
+              children: skills
+                  .map((skillModel) => SkillCard(skillModel: skillModel))
+                  .toList() // The list of widgets in the list
               ),
-              SkillCard(
-                skillTitle: 'Frameworks',
-                skillList: [
-                  "Flutter",
-                  "JetPack Compose",
-                  "Swift UI",
-                ],
+        ),
+        const SizedBox(
+          height: 83,
+        ),
+        Row(
+          mainAxisSize: MainAxisSize.min,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              '#',
+              style: TextStyle(
+                color: Theme.of(context).primaryColor,
+                fontSize: 32,
+                fontWeight: FontWeight.w500,
               ),
-              SkillCard(
-                skillTitle: 'Tools',
-                skillList: [
-                  "Android Studio",
-                  "XCode",
-                  "VSCode",
-                  "Git",
-                  "Linux",
-                  "Figma",
-                  // "Flutter Flow",
-                ],
+            ),
+            const Text(
+              'my-fun-facts',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 32,
+                fontWeight: FontWeight.w500,
               ),
-              SkillCard(
-                skillTitle: 'Databases',
-                skillList: [
-                  "Firestore",
-                  "SQLite",
-                  "Mongo db",
-                  "Cockroach db",
-                ],
+            ),
+          ],
+        ),
+        const SizedBox(
+          height: 34,
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            SizedBox(
+              width: mediaQuery.width < 800
+                  ? mediaQuery.width * 0.8
+                  : mediaQuery.width * 0.6,
+              child: ResponsiveGridList(
+                  // Vertical space around the grid
+                  minItemWidth: mediaQuery.width < 800
+                      ? 400
+                      : 430, // The minimum item width (can be smaller, if the layout constraints are smaller)
+                  minItemsPerRow:
+                      1, // The minimum items to show in a single row. Takes precedence over minItemWidth
+                  maxItemsPerRow:
+                      4, // The maximum items to show in a single row. Can be useful on large screens
+                  listViewBuilderOptions: ListViewBuilderOptions(
+                      shrinkWrap: true,
+                      physics: const NeverScrollableScrollPhysics()),
+                  // Options that are getting passed to the ListView.builder() function
+                  children: funFacts
+                      .map((fact) => Container(
+                            // height: 37,
+                            padding: const EdgeInsets.all(8),
+                            decoration: ShapeDecoration(
+                              shape: RoundedRectangleBorder(
+                                side: BorderSide(
+                                    width: 0.50, color: Color(0xFFABB2BF)),
+                              ),
+                            ),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  fact,
+                                  overflow: TextOverflow.ellipsis,
+                                  style: TextStyle(
+                                    color: Color(0xFFABB2BF),
+                                    fontSize: 14,
+                                    fontWeight: FontWeight.w400,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ))
+                      .toList() // The list of widgets in the list
+                  ),
+            ),
+            if (mediaQuery.width > 800)
+              SizedBox(
+                width: mediaQuery.width * 0.1,
               ),
-              SkillCard(
-                skillTitle: 'Others',
-                skillList: [
-                  "CIRCLE CI",
-                  "AWS",
-                  "GCLOUD",
-                  "YAML",
-                  "XML",
-                  "HTML",
-                  "CSS",
-                ],
-              ),
-            ], // The list of widgets in the list
-          ),
+            if (mediaQuery.width > 800) SvgPicture.asset("assets/funtacts.svg")
+          ],
         ),
       ],
     ));

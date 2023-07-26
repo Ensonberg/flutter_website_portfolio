@@ -9,6 +9,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../main.dart';
 import '../../model/project_model.dart';
 import '../../style/app_colors.dart';
+import '../../util/constants.dart';
 import '../../widgets/text_view.dart';
 import '../../widgets/mobile_drawer.dart';
 import '../../widgets/project_card.dart';
@@ -284,6 +285,7 @@ class _HomeMobileState extends State<HomeMobile> {
                 ListView.builder(
                     shrinkWrap: true,
                     itemCount: 3,
+                    physics: const NeverScrollableScrollPhysics(),
                     itemBuilder: (ctx, index) {
                       ProjectModel project = mobileAppProjects[index];
                       return ProjectCard(
@@ -294,125 +296,76 @@ class _HomeMobileState extends State<HomeMobile> {
                   height: 48,
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            RichText(
-                              text: TextSpan(
-                                text: '#',
-                                style: TextStyle(
-                                    color: AppColors.primary,
-                                    fontFamily:
-                                        GoogleFonts.firaCode().fontFamily,
-                                    fontWeight: FontWeight.w500,
-                                    fontSize: 32),
-                                children: [
-                                  TextSpan(
-                                    text: 'skills',
-                                    style: TextStyle(
-                                        color: Colors.white,
-                                        fontFamily:
-                                            GoogleFonts.firaCode().fontFamily,
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 32),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            SizedBox(
-                              width: 0,
-                            ),
-                            // Container(
-                            //   color: AppColors.primary,
-                            //   height: 1,
-                            //   width: mediaQuery.width * 0.2,
-                            // ),
-                          ],
-                        ),
-                      ],
-                    ),
-                    SizedBox(
-                      width: mediaQuery.width * 0.05,
-                    ),
-                    SizedBox(
-                      width: mediaQuery.width * 0.54,
-                      child: Wrap(
-                        //verticalDirection: VerticalDirection.up,
-                        alignment: WrapAlignment.spaceAround,
+                    RichText(
+                      text: TextSpan(
+                        text: '#',
+                        style: TextStyle(
+                            color: AppColors.primary,
+                            fontFamily: GoogleFonts.firaCode().fontFamily,
+                            fontWeight: FontWeight.w500,
+                            fontSize: 32),
                         children: [
-                          const SkillCard(
-                            skillTitle: 'Languages',
-                            skillList: [
-                              "Dart",
-                              "Java",
-                              "Kotlin",
-                              "Swift",
-                              "JavaScript",
-                            ],
-                          ),
-                          Column(
-                            children: const [
-                              SkillCard(
-                                skillTitle: 'Frameworks',
-                                skillList: [
-                                  "Flutter",
-                                  "JetPack Compose",
-                                  "Swift UI",
-                                ],
-                              ),
-                              SizedBox(
-                                height: 16,
-                              ),
-                              SkillCard(
-                                skillTitle: 'Tools',
-                                skillList: [
-                                  "Android Studio",
-                                  "XCode",
-                                  "VSCode",
-                                  "Git",
-                                  "Linux",
-                                  "Figma",
-                                ],
-                              ),
-                            ],
-                          ),
-                          Column(
-                            children: const [
-                              SkillCard(
-                                skillTitle: 'Databases',
-                                skillList: [
-                                  "Firestore",
-                                  "SQLite",
-                                  "Mongo db",
-                                  "Cockroach db",
-                                ],
-                              ),
-                              SizedBox(
-                                height: 16,
-                              ),
-                              SkillCard(
-                                skillTitle: 'Others',
-                                skillList: [
-                                  "CIRCLE CI",
-                                  "AWS",
-                                  "GCLOUD",
-                                  "YAML",
-                                  "XML",
-                                  "HTML",
-                                  "CSS",
-                                ],
-                              ),
-                            ],
+                          TextSpan(
+                            text: 'skills',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontFamily: GoogleFonts.firaCode().fontFamily,
+                                fontWeight: FontWeight.w500,
+                                fontSize: 32),
                           ),
                         ],
                       ),
-                    )
+                    ),
+
+                    // Container(
+                    //   color: AppColors.primary,
+                    //   height: 1,
+                    //   width: mediaQuery.width * 0.2,
+                    // ),
                   ],
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                SizedBox(
+                  width: mediaQuery.width * 0.54,
+                  child: Wrap(
+                    //verticalDirection: VerticalDirection.up,
+                    alignment: WrapAlignment.spaceAround,
+                    children: [
+                      SkillCard(
+                        skillModel: skills[0],
+                      ),
+                      Column(
+                        children: [
+                          SkillCard(
+                            skillModel: skills[1],
+                          ),
+                          SizedBox(
+                            height: 16,
+                          ),
+                          SkillCard(
+                            skillModel: skills[2],
+                          ),
+                        ],
+                      ),
+                      Column(
+                        children: [
+                          SkillCard(
+                            skillModel: skills[3],
+                          ),
+                          SizedBox(
+                            height: 16,
+                          ),
+                          SkillCard(
+                            skillModel: skills[4],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
                 const SizedBox(
                   height: 48,
@@ -485,7 +438,7 @@ class _HomeMobileState extends State<HomeMobile> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 const Text(
-                                  'Hello, i’m Elias!\n\nI’m a self-taught front-end developer based in Kyiv, Ukraine.  I can develop responsive websites from scratch and raise them into modern user-friendly web experiences. \n\nTransforming my creativity and knowledge into a websites has been my passion for over a year. I have been helping various clients to establish their presence online. I always strive to learn about the newest technologies and frameworks.',
+                                  'Hello, i’m Enson!\n\nI am Self-taught Mobile App developer based in Akure Nigeria. Proven ability to design, develop, and deliver high-quality, cross-platform mobile apps using Flutter. Expertise in all phases of the mobile app development lifecycle, from ideation to deployment. Strong problem-solving and analytical skills. Ability to work independently and as part of a team.',
                                   style: TextStyle(
                                     color: Color(0xFFABB2BF),
                                     fontSize: 16,
@@ -575,21 +528,22 @@ class _HomeMobileState extends State<HomeMobile> {
                     SizedBox(
                       width: mediaQuery.width * 0.8,
                       child: Wrap(
-                        alignment: WrapAlignment.start,
+                        alignment: WrapAlignment.center,
                         children: [
-                          const SizedBox(
-                            width: 505,
-                            child: Text(
-                              'I’m interested in freelance opportunities. However, if you have other request or question, don’t hesitate to contact me',
-                              style: TextStyle(
-                                color: Color(0xFFABB2BF),
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                              ),
+                          Text(
+                            'I’m interested in freelance opportunities. However, if you have other request or question, don’t hesitate to contact me',
+                            style: TextStyle(
+                              color: Color(0xFFABB2BF),
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
                             ),
                           ),
+                          SizedBox(
+                            height: 10,
+                          ),
                           Container(
-                            padding: const EdgeInsets.all(16),
+                            width: mediaQuery.width,
+                            // padding: const EdgeInsets.all(16),
                             decoration: const ShapeDecoration(
                               shape: RoundedRectangleBorder(
                                 side: BorderSide(

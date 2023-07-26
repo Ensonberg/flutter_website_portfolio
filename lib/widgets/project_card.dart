@@ -41,7 +41,7 @@ class ProjectCard extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 8, right: 8),
+              padding: const EdgeInsets.only(left: 8, right: 8, top: 8),
               child: SizedBox(
                 //  width: 100,
                 height: 100,

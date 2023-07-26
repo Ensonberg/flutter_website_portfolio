@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:my_portfolio_website/model/skill_model.dart';
 import 'package:responsive_grid_list/responsive_grid_list.dart';
 
 class SkillCard extends StatelessWidget {
-  final String skillTitle;
-  final List<String> skillList;
-  const SkillCard({Key? key, required this.skillTitle, required this.skillList})
-      : super(key: key);
+  final SkillModel skillModel;
+  const SkillCard({Key? key, required this.skillModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +29,7 @@ class SkillCard extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.only(left: 8, right: 8),
             child: Text(
-              skillTitle,
+              skillModel.skillTitle,
               style: const TextStyle(
                 color: Colors.white,
                 fontSize: 16,
@@ -63,11 +62,11 @@ class SkillCard extends StatelessWidget {
                   physics:
                       const NeverScrollableScrollPhysics()), // Options that are getting passed to the ListView.builder() function
               children: List.generate(
-                skillList.length,
+                skillModel.skillList.length,
                 (index) => Padding(
                   padding: const EdgeInsets.all(0.0),
                   child: Text(
-                    skillList[index],
+                    skillModel.skillList[index],
                     style: TextStyle(
                       color: Color(0xFFABB2BF),
                       fontSize: 16,

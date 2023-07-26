@@ -1,11 +1,11 @@
 {
-    "name": "my_portfolio_website",
-    "short_name": "my_portfolio_website",
+    "name": "Enson Portfolio website",
+    "short_name": "Enson Portfolio website",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "Enson is a Mobile Developer and DevOps Engineer",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
