@@ -4,8 +4,7 @@ import 'package:my_portfolio_website/pages/home/home_desktop.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 
 import 'contacts_desktop.dart';
-
-
+import 'contacts_mobile.dart';
 
 class Contacts extends StatelessWidget {
   const Contacts({Key? key}) : super(key: key);
@@ -14,12 +13,12 @@ class Contacts extends StatelessWidget {
   Widget build(BuildContext context) {
     return ScreenTypeLayout.builder(
       breakpoints:
-      const ScreenBreakpoints(desktop: 900, tablet: 650, watch: 250),
+          const ScreenBreakpoints(desktop: 900, tablet: 650, watch: 250),
       mobile: (_) => OrientationLayoutBuilder(
-        portrait: (context) =>  Container(),
-        landscape: (context) => Container(),
+        portrait: (context) => const ContactsMobile(),
+        landscape: (context) => const ContactsMobile(),
       ),
-      tablet: (_) => const  ContactsDesktop(),
+      tablet: (_) => const ContactsDesktop(),
       desktop: (_) => const ContactsDesktop(),
     );
   }

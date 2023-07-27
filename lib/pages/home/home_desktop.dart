@@ -541,7 +541,7 @@ class _HomeDesktopWidgetState extends State<HomeDesktopWidget> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         const Text(
-                          'Hello, i’m Enson!\n\nI am Self-taught Mobile App developer based in Akure Nigeria. Proven ability to design, develop, and deliver high-quality, cross-platform mobile apps using Flutter. Expertise in all phases of the mobile app development lifecycle, from ideation to deployment. Strong problem-solving and analytical skills. Ability to work independently and as part of a team.',
+                          aboutMeShort,
                           style: TextStyle(
                             color: Color(0xFFABB2BF),
                             fontSize: 16,
@@ -677,7 +677,36 @@ class _HomeDesktopWidgetState extends State<HomeDesktopWidget> {
                               RawMaterialButton(
                                 hoverColor: Theme.of(context).primaryColor,
                                 onPressed: () {
-                                  _launchDiscord();
+                                  launchWhatsapp();
+                                },
+                                child: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    SvgPicture.asset(
+                                      "assets/whatsapp.svg",
+                                      height: 32,
+                                      width: 32,
+                                    ),
+                                    const SizedBox(
+                                      width: 4,
+                                    ),
+                                    Text(
+                                      '+2347066790766',
+                                      style: TextStyle(
+                                        color: Color(0xFFABB2BF),
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w400,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              RawMaterialButton(
+                                hoverColor: Theme.of(context).primaryColor,
+                                onPressed: () {
+                                  launchDiscord();
                                 },
                                 child: Row(
                                   mainAxisSize: MainAxisSize.min,
@@ -734,29 +763,5 @@ class _HomeDesktopWidgetState extends State<HomeDesktopWidget> {
         ),
       ],
     ));
-  }
-
-  Future<void> _launchDiscord() async {
-    if (!await launchUrl(
-        Uri.parse("https://discordapp.com/channels/@me/ensonberg/"))) {
-      throw Exception('Could not launch ');
-    }
-  }
-
-  String? encodeQueryParameters(Map<String, String> params) {
-    return params.entries
-        .map((MapEntry<String, String> e) =>
-            '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
-        .join('&');
-  }
-
-  void sendEmail() {
-    final Uri emailLaunchUri = Uri(
-        scheme: 'mailto',
-        path: 'edirinmuogho@gmail.com',
-        query: encodeQueryParameters(<String, String>{
-          'subject': '',
-        }));
-    launchUrl(emailLaunchUri);
   }
 }

@@ -5,6 +5,9 @@ Inspired by the
 - [@Elias Portfolio ](https://www.figma.com/community/file/1164933568884615740)
 
 
+## Live Preview
+Live Demo at [Click Here](https://my-portfolio-ddb93.web.app/)
+
 ## Screenshots
 
 ![App Screenshot](https://firebasestorage.googleapis.com/v0/b/my-portfolio-ddb93.appspot.com/o/Screenshot%202023-07-26%20at%204.22.46%20PM.png?alt=media&token=fe8f26cb-ff06-48cf-8123-284f1422b8a8)
@@ -32,17 +35,16 @@ samples, guidance on mobile development, and a full API reference.
 To deploy this project run
 
 ```bash
-   fork the project on github 
+  fork the project on github 
 
   git clone  your repo 
 
   flutter pub get
 
-  locate the constant.dart and add your write up
 
   flutter build web
 
-  ..done 
+..done 
 
 
 

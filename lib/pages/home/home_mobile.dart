@@ -148,7 +148,7 @@ class _HomeMobileState extends State<HomeMobile> {
                                             fontWeight: FontWeight.w600,
                                             fontFamily: GoogleFonts.firaCode()
                                                 .fontFamily,
-                                            fontSize: 16),
+                                            fontSize: 14),
                                       ),
                                     ],
                                   ),
@@ -438,7 +438,7 @@ class _HomeMobileState extends State<HomeMobile> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 const Text(
-                                  'Hello, i’m Enson!\n\nI am Self-taught Mobile App developer based in Akure Nigeria. Proven ability to design, develop, and deliver high-quality, cross-platform mobile apps using Flutter. Expertise in all phases of the mobile app development lifecycle, from ideation to deployment. Strong problem-solving and analytical skills. Ability to work independently and as part of a team.',
+                                  aboutMeShort,
                                   style: TextStyle(
                                     color: Color(0xFFABB2BF),
                                     fontSize: 16,
@@ -526,20 +526,21 @@ class _HomeMobileState extends State<HomeMobile> {
                       height: 45,
                     ),
                     SizedBox(
-                      width: mediaQuery.width * 0.8,
-                      child: Wrap(
-                        alignment: WrapAlignment.center,
+                      child: Column(
                         children: [
-                          Text(
-                            'I’m interested in freelance opportunities. However, if you have other request or question, don’t hesitate to contact me',
-                            style: TextStyle(
-                              color: Color(0xFFABB2BF),
-                              fontSize: 16,
-                              fontWeight: FontWeight.w500,
+                          Padding(
+                            padding: const EdgeInsets.all(16.0),
+                            child: Text(
+                              'I’m interested in freelance opportunities. However, if you have other request or question, don’t hesitate to contact me',
+                              style: TextStyle(
+                                color: Color(0xFFABB2BF),
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                              ),
                             ),
                           ),
                           SizedBox(
-                            height: 10,
+                            height: 50,
                           ),
                           Container(
                             width: mediaQuery.width,
@@ -572,7 +573,40 @@ class _HomeMobileState extends State<HomeMobile> {
                                         hoverColor:
                                             Theme.of(context).primaryColor,
                                         onPressed: () {
-                                          _launchDiscord();
+                                          launchWhatsapp();
+                                        },
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.min,
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.start,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            SvgPicture.asset(
+                                              "assets/whatsapp.svg",
+                                              height: 32,
+                                              width: 32,
+                                            ),
+                                            const SizedBox(
+                                              width: 4,
+                                            ),
+                                            Text(
+                                              '+2347066790766',
+                                              style: TextStyle(
+                                                color: Color(0xFFABB2BF),
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.w400,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                      const SizedBox(height: 8),
+                                      RawMaterialButton(
+                                        hoverColor:
+                                            Theme.of(context).primaryColor,
+                                        onPressed: () {
+                                          launchDiscord();
                                         },
                                         child: Row(
                                           mainAxisSize: MainAxisSize.min,
@@ -638,29 +672,5 @@ class _HomeMobileState extends State<HomeMobile> {
         ),
       ),
     ));
-  }
-
-  Future<void> _launchDiscord() async {
-    if (!await launchUrl(
-        Uri.parse("https://discordapp.com/channels/@me/ensonberg/"))) {
-      throw Exception('Could not launch ');
-    }
-  }
-
-  String? encodeQueryParameters(Map<String, String> params) {
-    return params.entries
-        .map((MapEntry<String, String> e) =>
-            '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
-        .join('&');
-  }
-
-  void sendEmail() {
-    final Uri emailLaunchUri = Uri(
-        scheme: 'mailto',
-        path: 'edirinmuogho@gmail.com',
-        query: encodeQueryParameters(<String, String>{
-          'subject': '',
-        }));
-    launchUrl(emailLaunchUri);
   }
 }

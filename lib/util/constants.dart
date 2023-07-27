@@ -1,6 +1,10 @@
+import 'package:url_launcher/url_launcher.dart';
+
 import '../model/project_model.dart';
 import '../model/skill_model.dart';
 
+const aboutMeShort =
+    "Hello, i’m Enson!\n\nI am Self-taught Mobile App developer based in Akure Nigeria. Proven ability to design, develop, and deliver high-quality, cross-platform mobile apps using Flutter. Expertise in all phases of the mobile app development lifecycle, from ideation to deployment. Strong problem-solving and analytical skills. Ability to work independently and as part of a team.";
 const aboutMeFull =
     "Hello, i’m Enson!\n\nI am Self-taught Mobile App developer based in Akure Nigeria. Proven ability to design, develop, and deliver high-quality, cross-platform mobile apps using Flutter. Expertise in all phases of the mobile app development lifecycle, from ideation to deployment. Strong problem-solving and analytical skills. Ability to work independently and as part of a team. \n\nI am confident that my skills and experience would be a valuable asset to your team. I am a highly motivated and results-oriented individual with a passion for mobile app development. I am eager to learn new technologies and am always looking for ways to improve my skills. I am confident that I can make a significant contribution to your company. ";
 
@@ -8,7 +12,7 @@ final List<String> funFacts = [
   "I was born in Delta State Nigeria",
   "My favorite food is Banga Soup",
   "I don't know how to swim",
-  "I love listening for music ",
+  "I love listening to  music ",
 ];
 
 final List<SkillModel> skills = [
@@ -144,3 +148,34 @@ final List<ProjectModel> devopsProjects = [
       projectSubTitle:
           "The Operationalize ML project contains a Machine Learning Microservice, built on Scikit-Learn"),
 ];
+
+//links and urls
+Future<void> launchDiscord() async {
+  if (!await launchUrl(
+      Uri.parse("https://discordapp.com/channels/@me/ensonberg/"))) {
+    throw Exception('Could not launch ');
+  }
+}
+
+Future<void> launchWhatsapp() async {
+  if (!await launchUrl(Uri.parse("https://wa.me/+2347066790766"))) {
+    throw Exception('Could not launch ');
+  }
+}
+
+String? encodeQueryParameters(Map<String, String> params) {
+  return params.entries
+      .map((MapEntry<String, String> e) =>
+          '${Uri.encodeComponent(e.key)}=${Uri.encodeComponent(e.value)}')
+      .join('&');
+}
+
+void sendEmail() {
+  final Uri emailLaunchUri = Uri(
+      scheme: 'mailto',
+      path: 'edirinmuogho@gmail.com',
+      query: encodeQueryParameters(<String, String>{
+        'subject': '',
+      }));
+  launchUrl(emailLaunchUri);
+}
